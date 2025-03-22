@@ -1,10 +1,10 @@
-import numpy as np
+import math
 
-def softmax(scores):
-    exp_scores = np.exp(scores)
-    sum_exp_scores = np.sum(exp_scores)
-    probabilities = np.round(exp_scores / sum_exp_scores, 4)
-    return probabilities.tolist()
+def softmax(scores: list[float]) -> list[float]:
+	sum_exp_scores = 0
+	sum_exp_scores = sum(list(map(lambda a: sum_exp_scores + math.exp(a), scores)))
+	probabilities = list(map(lambda a: math.exp(a)/sum_exp_scores, scores))
+	return probabilities
 
 def test_softmax():
     # Test case 1
